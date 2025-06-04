@@ -211,7 +211,7 @@ exports.login = async (req, res) => {
             }
 
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
-                expiresIn: "2m",
+                expiresIn: "24h",
             })
             user.token = token;
             user.password = undefined;
