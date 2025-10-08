@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
 import HighlightText from '../components/core/Homepage/HighlightText';
@@ -10,8 +10,12 @@ import TimelineSection from '../components/core/Homepage/TimelineSection';
 import LearningLanguageSection from '../components/core/Homepage/LearningLanguageSection';
 import InstructorSection from '../components/core/Homepage/InstructorSection';
 import Footer from '../components/common/Footer';
-import ExploreMore from '../components/core/Homepage/ExploreMore';
-const Home = () => {
+import ExploreMore from '../components/core/Homepage/ExploreMore'; 
+
+const Home = () => { 
+  useEffect(()=>{
+   console.log("home page");
+},[])
   return (
     <div>
       {/* Section 1 */}

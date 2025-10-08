@@ -145,7 +145,8 @@ exports.getAllCourses = async (req, res) => {
                 ratingAndReviews: true,
                 studentsEnrolled: true
 
-            }).populate("instructor").exec();
+            }).populate("instructor").exec(); 
+
         return res.status(200).json({
             success: true,
             message: "Data for all courses fetched successfully",
@@ -164,7 +165,8 @@ exports.getAllCourses = async (req, res) => {
 
 //  getCourseDetails 
 
-exports.getCourseDetails = async (req, res) => {
+exports.getCourseDetails = async (req, res) => { 
+	console.log("course details called..");
     try {
         // get id 
         const { courseId } = req.body;

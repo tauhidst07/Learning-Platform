@@ -51,12 +51,6 @@ const Navbar = ({ setProgress }) => {
         <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700'>
             <div className='flex w-11/12 max-w-maxContent items-center justify-between '>
                 {/* logo */}
-                {/* <Link to="/">
-                    <div className='lg:w-[190px] w-[160px] h-[42px] text-white text-[25px]  lg:text-right '>
-                        SkillSphere
-                    </div>
-
-                </Link>  */}  
             
                 <Link to='/' onClick={() => { dispatch(setProgress(100)) }}>
                     <img src={logo} width={160} alt="Study Notion" height={42} ></img>
@@ -120,7 +114,7 @@ const Navbar = ({ setProgress }) => {
                             <p className=' text-xl text-yellow-50 font-semibold'>Courses</p>
                             <div className=' flex flex-col items-center pr-4'>
                                 {
-                                    sublinks?.length < 0 ? (<div></div>) : (
+                                    sublinks?.length < 0 ? (<div>loading...</div>) : (
                                         sublinks?.map((element, index) => (
                                             <Link to={`/catalog/${element?.name}`} key={index} onClick={() => { dispatch(setProgress(30)); shownav() }} className="p-2 text-sm">
                                                 <p className=' text-richblack-5 '>
