@@ -38,8 +38,6 @@ exports.resetPasswordToken= async (req,res)=>{
           "password Reset Link", 
           `Password Reset Link:${url}`
           ) 
-
-     console.log("mail response in log: ",mailResponse);
       // return response 
       return res.json({
           success:true, 

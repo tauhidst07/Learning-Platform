@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {getUserCourses as getUserEnrolledCourses}  from '../../../services/operations/profileAPI';
 import ProgressBar from '@ramonak/react-progress-bar';
@@ -16,18 +16,15 @@ const EnrolledCourses = () => {
     const navigate = useNavigate();
 
 
-    const getEnrolledCourses = async() => {
+    const getEnrolledCourses = useCallback(async() => {
         setLoading(true);
             const response = await getUserEnrolledCourses(token,dispatch); 
-            console.log("api response result ..",response)
-            console.log("getEnrolledCourses -> response", response?.courseProgress);
             setLoading(false);
             setEnrolledCourses(response?.courses);
             setProgressData(response?.courseProgress); 
-            console.log("course Data..",enrolledCourses); 
-            console.log("progress data..",progressData)
 
     }
+,[token])
 
     const totalNoOfLectures = (course) => {
         let total = 0;
@@ -39,7 +36,7 @@ const EnrolledCourses = () => {
 
     useEffect(()=> {
         getEnrolledCourses();
-    },[]);
+    },[getEnrolledCourses]);
 
     if(Loading) {
         return (

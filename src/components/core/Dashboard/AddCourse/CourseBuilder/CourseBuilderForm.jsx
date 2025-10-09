@@ -24,7 +24,6 @@ const CourseBuilderForm = () => {
   const { course } = useSelector((state) => state.course);
 
   const gonext = () => { 
-    console.log("printing course...",course)
     if (course.courseContent.length > 0) {
       if (
         course.courseContent.some((section) => section.subSection.length > 0)

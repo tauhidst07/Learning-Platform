@@ -14,7 +14,6 @@ import { setProgress } from "./slices/loadingBarSlice";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import MyProfile from "./components/core/Dashboard/MyProfile";
 import Dashboard from './pages/Dashboard'
-import Error from './pages/Error'; 
 import Setting from "./components/core/Dashboard/Settings";
 import EnrollledCourses from "./components/core/Dashboard/EnrolledCourses"; 
 import PurchaseHistory from "./components/core/Dashboard/PurchaseHistory"; 

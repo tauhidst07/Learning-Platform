@@ -17,7 +17,6 @@ exports.auth= async(req,res,next)=>{
         // verify the token 
         try{
            const decode = jwt.verify(token,process.env.JWT_SECRET); 
-           console.log(decode); 
            req.user= decode;
         } 
         catch(err){
@@ -65,8 +64,6 @@ exports.isStudent = async (req,res,next)=>{
 exports.isInstructor = async (req,res,next)=>{
     try {
 		const userDetails = await User.findOne({ email: req.user.email });
-		console.log(userDetails);
-		console.log(userDetails.accountType);
 
 		if (userDetails.accountType !== "Instructor") {
 			return res.status(401).json({

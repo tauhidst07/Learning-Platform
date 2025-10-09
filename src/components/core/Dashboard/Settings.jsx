@@ -25,8 +25,6 @@ const Settings = () => {
   const handleUpload = (e) => {
     e.preventDefault();
     const file = e.target[0].files[0]; 
-    // console.log("printing token....",token) 
-   console.log("printing file..",file)
     updatePfp(token,file);
   }
 

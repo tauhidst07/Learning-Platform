@@ -21,7 +21,6 @@ const VideoDetails = () => {
   const dispatch = useDispatch();
   const {token} = useSelector(state => state.auth);
   const {user}= useSelector(state => state.profile);
-  // console.log("user",user._id);
   const {courseSectionData, courseEntireData, completedLectures, totalNoOfLectures} = useSelector(state => state.viewCourse);
   const navigate = useNavigate();
   const playerRef = React.useRef(null);
@@ -37,7 +36,6 @@ const VideoDetails = () => {
     const filteredSection = courseSectionData?.filter((section) => section._id === sectionId);
     const filteredSubsection = filteredSection[0]?.subSection?.filter((subsection) => subsection._id === subsectionId);
     setVideoData(filteredSubsection?.[0]);
-    // console.log(filteredSubsection[0]);
     setVideoEnd(false);
   }, [courseSectionData, sectionId, subsectionId]);
 
@@ -46,10 +44,8 @@ const VideoDetails = () => {
      const currentSectionIndex = courseSectionData?.findIndex((section) => section._id === sectionId);
       const currentSubsectionIndex = courseSectionData[currentSectionIndex]?.subSection.findIndex((subsection) => subsection._id === subsectionId);
       if (currentSubsectionIndex === courseSectionData[currentSectionIndex]?.subSection?.length - 1  && currentSectionIndex === courseSectionData?.length - 1) {
-        // console.log("last lecture");
         return true;
       }else {
-        // console.log("not last lecture");
         return false;
       }
   }
@@ -59,10 +55,9 @@ const VideoDetails = () => {
     const currentSectionIndex = courseSectionData?.findIndex((section) => section._id === sectionId);
     const currentSubsectionIndex = courseSectionData[currentSectionIndex]?.subSection.findIndex((subsection) => subsection._id === subsectionId);
     if (currentSubsectionIndex === 0  && currentSectionIndex === 0) {
-      // console.log("first lecture");
       return true;
     }else {
-      // console.log("not first lecture");
+
       return false;
     }
   }
@@ -111,7 +106,6 @@ const VideoDetails = () => {
     if(res){
     dispatch(setCompletedLectures([...completedLectures, videoData._id])); 
     }
-    console.log("lecture completed", completedLectures);
   }
 
   //set video end to false when .play() is called

@@ -23,7 +23,6 @@ const ContactUsForm = () => {
     }, [reset,isSubmitSuccessful])
 
     const onSubmit = async (data) => {
-        console.log(data);
         try{
         setloading(true);
         const phoneNo = data.countryCode+"  "+data.phoneNo;
@@ -37,10 +36,9 @@ const ContactUsForm = () => {
         else{
             toast.error("Something went wrong");
         }
-        console.log("contact response",res);
         setloading(false);
         }catch(error){
-            console.log(error);
+            (error);
         }
 
     }

@@ -24,8 +24,6 @@ const InstructorDashboard = () => {
             const instructorCourses = await fetchInstructorCourses(token);
 
             setCourses(instructorCourses);
-            console.log("details",instructorDetails);
-            console.log("courses",instructorCourses);
             setDetails(instructorDetails);
         })();
     }, [])

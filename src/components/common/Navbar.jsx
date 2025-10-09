@@ -4,7 +4,6 @@ import logo from '../../assets/Logo/logo-light-temp.png'
 import { NavbarLinks } from '../../data/navbar-links'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { FaShoppingCart } from "react-icons/fa";
 import { categories } from '../../services/apis'
 import { apiConnector } from '../../services/apiConnector' 
 import { TiShoppingCart } from 'react-icons/ti' 
@@ -26,7 +25,6 @@ const Navbar = ({ setProgress }) => {
     const fetchSublinks = async () => {
         try {
             const result = await apiConnector("GET", categories.CATEGORIES_API);
-            console.log("printing sublinks..", result);
             setSublinks(result?.data?.allCategory)
         }
         catch (error) {

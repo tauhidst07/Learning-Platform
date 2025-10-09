@@ -27,7 +27,6 @@ exports.capturePayment = async (req, res) => {
 
     for(const course_id of courses){
         let course;
-        // console.log("courseid=",course_id);
         try{
             course = await Course.findById(course_id);
             if(!course) {
@@ -65,7 +64,6 @@ exports.capturePayment = async (req, res) => {
         try{
             //initiate the payment using razorpay
             const paymentResponse = await instance.orders.create(options);
-            console.log("payment",paymentResponse);
             //return response
             return res.status(200).json({
                 success:true,
@@ -121,7 +119,6 @@ exports.verifySignature = async (req, res) => {
                     try{
                         //update the course
                         for(const course_id of courses){
-                        console.log("verify courses=",course_id);
                         const course = await Course.findByIdAndUpdate(
                             course_id,
                             {$push:{studentsEnrolled:userId}},
@@ -145,7 +142,6 @@ exports.verifySignature = async (req, res) => {
                           },{new:true});
                         //send email
                         const recipient = await User.findById(userId);
-                        console.log("recipient=>",course);
                         const courseName = course.courseName;
                         const courseDescription = course.courseDescription;
                         const thumbnail = course.thumbnail;

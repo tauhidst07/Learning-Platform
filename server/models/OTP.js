@@ -22,7 +22,6 @@ const OTPSchema = new mongoose.Schema({
 async function sendVerificationEmail(email,otp){
    try{
       const mailResponse =await mailSender(email,"Verificatiion Email from SkillSphere",emailTemplate(otp)); 
-      console.log("Email sent Successfully",mailResponse)
    } 
    catch(error){
     console.log("error occured while sending mail",error); 
@@ -31,8 +30,6 @@ async function sendVerificationEmail(email,otp){
 } 
 
 OTPSchema.pre("save", async function (next) {
-	console.log("New document saved to database");
-
 	// Only send an email when a new document is created
 	if (this.isNew) {
 		await sendVerificationEmail(this.email, this.otp);

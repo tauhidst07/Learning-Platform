@@ -22,7 +22,6 @@ const EditCourse = () => {
             const result = await getFullDetailsOfCourse(courseId, token);
             if(result?.courseDetails) {
                 dispatch(setCourse(result.courseDetails));
-                console.log("result",course);
                 dispatch(setEditCourse(true));
                 dispatch(setStep(1));
             }

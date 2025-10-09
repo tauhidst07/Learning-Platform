@@ -55,7 +55,6 @@ exports.deleteAccount = async (req,res)=>{
     try{ 
         // get Id  
         const id = req.user.id;  
-        console.log("user id..",id)
         // validation  
         const userDetails = await User.findById({_id:id}).exec();  
         if(!userDetails){
@@ -64,8 +63,7 @@ exports.deleteAccount = async (req,res)=>{
                 message:"User not found"
             })
         }  
-        // const user = userDetails.schema.obj;
-        console.log("user..",userDetails)
+    
         // delete profile 
         await Profile.findByIdAndDelete({_id:userDetails.additionalDetails}) 
         // Todo: Hw unenroll user form all enroll courses   
@@ -79,7 +77,6 @@ exports.deleteAccount = async (req,res)=>{
         // }
         
         // delet user   
-        console.log("just before user deletion..")
         await User.findByIdAndDelete({_id:id}) 
         // return response  
         return res.status(200).json({
@@ -186,7 +183,6 @@ exports.updateDisplayPicture = async (req, res) => {
 		image,
 		process.env.FOLDER_NAME
 	);
-	console.log(uploadDetails);
 
 	const updatedImage = await User.findByIdAndUpdate({_id:id},{image:uploadDetails.secure_url},{ new: true });
 
@@ -293,7 +289,6 @@ exports.getEnrolledCourses=async (req,res) => {
 			}
 		}
 		).populate("courseProgress").exec();
-        // console.log(enrolledCourses);
         res.status(200).json({
             success: true,
             message: "User Data fetched successfully",

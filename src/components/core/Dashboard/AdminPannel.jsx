@@ -15,7 +15,6 @@ const AdminPannel = () => {
         if (!category.name || !category.description) {
             return;
         }
-        console.log(category);
         const res = await createCategory({
             name: category.name,
             description: category.description

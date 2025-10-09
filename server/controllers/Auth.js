@@ -13,7 +13,6 @@ require("dotenv").config()
 
 // sendOTP 
 exports.sendOTP = async (req, res) => {
-
     try {
         // fetch email from request body 
         const { email } = req.body;
@@ -35,7 +34,6 @@ exports.sendOTP = async (req, res) => {
             lowerCaseAlphabets: false,
             specialChars: false,
         })
-        console.log("OTP generated", otp);
 
         // check unique otp or not 
         let result = await OTP.findOne({ otp: otp });
@@ -55,7 +53,6 @@ exports.sendOTP = async (req, res) => {
         // create an entry for OTP 
 
         const otpBody = await OTP.create(otpPayload);
-        console.log(otpBody)
 
         // return a response successful 
         res.status(200).json({
@@ -94,7 +91,7 @@ exports.signup = async (req, res) => {
 
         if (!firstName || !lastName || !email || !password || !confirmPassword || !otp) {
 
-            return res.staus(403).json({
+            return res.status(403).json({
                 success: false,
                 message: "All fields are required"
             })
@@ -120,7 +117,6 @@ exports.signup = async (req, res) => {
 
         // find most recent OTP stored for the user  
         const recentOtp = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
-        console.log("recent Otp",recentOtp);
 
         // validate otp  
         if (recentOtp.length == 0) {
@@ -183,7 +179,6 @@ exports.signup = async (req, res) => {
 
 // login  
 exports.login = async (req, res) => { 
-    console.log("login called: ")
     try {
         // fetch data from req body  
         const { email, password } = req.body;
@@ -286,7 +281,6 @@ exports.changePassword = async (req,res)=>{
             {password:hashedPassword},
             {new:true}
         )
-        console.log("updated user",updatedUserDetails)
       	// Send notification email
 		try {
 			const emailResponse = await mailSender(
@@ -297,7 +291,6 @@ exports.changePassword = async (req,res)=>{
 					`Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
 				)
 			);
-			console.log("Email sent successfully:", emailResponse.response);
 		} catch (error) {
 			// If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
 			console.error("Error occurred while sending email:", error);

@@ -41,7 +41,6 @@ const CourseDetails = () => {
     useEffect(() => {
         const getCourseDetails = async () => {
             const response = await fetchCourseDetails(courseId, dispatch);
-            console.log("getCourseDetails -> response", response);
             setCourseDetail(response);
         }
         getCourseDetails();
@@ -51,7 +50,6 @@ const CourseDetails = () => {
         if (courseDetail?.ratingAndReviews?.length > 0) {
             const count = GetAvgRating(courseDetail?.ratingAndReviews);
             setAvgReviewCount(count);
-            console.log("getCourseDetails -> count", parseInt(count));
         }
     }, [courseDetail?.ratingAndReviews]);
 
@@ -60,7 +58,6 @@ const CourseDetails = () => {
     const handelAddToCart = () => {
         if (token) {
             dispatch(addToCart(courseDetail));
-            // console.log("handelAddToCart -> courseId", courseDetail._id)
         }
         else {
             navigate('/login');
@@ -71,7 +68,6 @@ const CourseDetails = () => {
     useEffect(() => {
         if (courseDetail) {
             const Enrolled = courseDetail?.studentsEnrolled?.find((student) => student === user?._id);
-            // console.log("CourseDetails -> Enrolled", Enrolled)
             if (Enrolled) {
                 setAlreadyEnrolled(true);
             }

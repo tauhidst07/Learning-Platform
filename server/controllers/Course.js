@@ -54,8 +54,6 @@ exports.createCourse = async (req, res) => {
 			accountType: "Instructor",
 		}); 
 
-        console.log("instructor details, ..",instructorDetails)
-
 		if (!instructorDetails) {
 			return res.status(404).json({
 				success: false,
@@ -76,7 +74,6 @@ exports.createCourse = async (req, res) => {
 			thumbnail,
 			process.env.FOLDER_NAME
 		);
-		console.log(thumbnailImage);
 		// Create a new course with the given details
 		const newCourse = await Course.create({
 			courseName,
@@ -166,7 +163,6 @@ exports.getAllCourses = async (req, res) => {
 //  getCourseDetails 
 
 exports.getCourseDetails = async (req, res) => { 
-	console.log("course details called..");
     try {
         // get id 
         const { courseId } = req.body;
@@ -253,7 +249,6 @@ exports.editCourse = async (req, res) => {
   
 	  // If Thumbnail Image is found, update it
 	  if (req.files) {
-		console.log("thumbnail update")
 		const thumbnail = req.files.thumbnailImage
 		const thumbnailImage = await uploadImageToCloudinary(
 		  thumbnail,
@@ -339,7 +334,6 @@ exports.editCourse = async (req, res) => {
 		userID: userId,
 	  })
   
-	  console.log("courseProgressCount : ", courseProgressCount)
   
 	  if (!courseDetails) {
 		return res.status(400).json({
@@ -448,7 +442,6 @@ exports.deleteCourse = async (req, res) => {
   exports.searchCourse = async (req, res) => {
 	try {
 	  const  { searchQuery }  = req.body
-	//   console.log("searchQuery : ", searchQuery)
 	  const courses = await Course.find({
 		$or: [
 		  { courseName: { $regex: searchQuery, $options: "i" } },
@@ -476,7 +469,6 @@ exports.deleteCourse = async (req, res) => {
 
 //mark lecture as completed
 exports.markLectureAsComplete = async (req, res) => { 
-	console.log("inside mark lecture controler...")
 	const { courseId, subSectionId, userId } = req.body
 	if (!courseId || !subSectionId || !userId) {
 	  return res.status(400).json({
@@ -488,8 +480,7 @@ exports.markLectureAsComplete = async (req, res) => {
 	progressAlreadyExists = await CourseProgress.findOne({
 				  userId: userId,
 				  courseId: courseId,
-				}) 
-	console.log("printing progree already..",progressAlreadyExists)		 
+				})	 
 	
 	
 	  const completedVideos = progressAlreadyExists.completedVideos 

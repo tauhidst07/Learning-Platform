@@ -45,7 +45,6 @@ const PublishCourse = () => {
         formData.append("status", getValues("public") ? COURSE_STATUS.PUBLISHED : COURSE_STATUS.DRAFT);
         const result = await editCourseDetails(formData, token);
         const category_id= await course.category;
-        console.log("category_id",category_id);
         const addCourseCategory = await addCourseToCategory({categoryId:category_id,courseId:course._id},token);
         if(result && addCourseCategory) {
             goToMyCourses();

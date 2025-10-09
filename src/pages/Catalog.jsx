@@ -22,12 +22,9 @@ const Catalog = () => {
   const fetchSublinks=  async ()=>{
     try {
         const result = await apiConnector("GET",categories.CATEGORIES_API); 
-        console.log("category api result .",result)
         const category_id= result.data.allCategory.filter((item)=>item.name=== Catalog.catalog)[0]._id;
         setcategoryID(category_id);      
         setDesc(result.data.allCategory.filter((item)=>item.name=== Catalog.catalog)[0]);
-        // console.log("Desc",Desc);  
-        // console.log(category_id);
     } catch (error) {
         console.log("could not fetch sublinks");
         console.log(error);
@@ -42,7 +39,6 @@ useEffect(() => {
         
             const result = await getCatalogaPageData(categoryID,dispatch);
             setCatalogPageData(result);
-            // console.log("page data",CatalogPageData);
         
     }
     if (categoryID) {
@@ -83,8 +79,8 @@ useEffect(() => {
       
       <div className=' mx-auto box-content w-full max-w-maxContentTab px-2 py-12 lg:max-w-maxContent'>
         <h2 className='section_heading mb-6 md:text-3xl text-xl'>
-          Frequently BoughtTogether
-          </h2>
+          Frequently Bought Together 
+          </h2>  
           <div className='grid grid-cols-2 gap-3 lg:gap-6 lg:grid-cols-2 pr-4'>
             {
               CatalogPageData?.mostSellingCourses?.map((item,index)=>(

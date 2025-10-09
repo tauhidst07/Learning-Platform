@@ -32,7 +32,6 @@ const CourseInformationForm = () => {
         const getCategories = async() => {
             setLoading(true);
             const categories = await fetchCourseCategories(); 
-            console.log("printing categories..",categories)
             if(categories.length > 0) {
                 setCourseCategories(categories);
             }
@@ -73,10 +72,9 @@ const CourseInformationForm = () => {
     const onSubmit = async(data) => {
 
         if(editCourse) {
-            if(isFormUpdated()) {
-                const currentValues = getValues();
             const formData = new FormData();
-
+            if(isFormUpdated()) {
+            const currentValues = getValues();
             formData.append("courseId", course._id);
             if(currentValues.courseTitle !== course.courseName) {
                 formData.append("courseName", data.courseTitle);
@@ -114,8 +112,6 @@ const CourseInformationForm = () => {
             else {
                 toast.error("NO Changes made so far");
             }
-            console.log("PRINTING FORMDATA", formData);
-            console.log("PRINTING result", result);
 
             return;
         }
@@ -133,17 +129,12 @@ const CourseInformationForm = () => {
         formData.append("thumbnailImage", data.courseImage);
 
         setLoading(true);
-        console.log("BEFORE add course API call");
-        console.log("PRINTING FORMDATA", formData);
         const result = await addCourseDetails(formData,token);
         if(result) {
             dispatch(setStep(2));
             dispatch(setCourse(result));
         }
         setLoading(false);
-        console.log("AFTER add course API call");
-        console.log("PRINTING FORMDATA", [...formData]);
-        console.log("PRINTING result", result);
 
     }
 
