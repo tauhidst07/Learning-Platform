@@ -30,7 +30,6 @@ const ContactUsForm = () => {
 
         const res = await apiConnector("POST",contactusEndpoint.CONTACT_US_API,{firstName,lastName,email,message,phoneNo});
         if(res.data.success===true){
-            
             toast.success("Message sent successfully");
         }
         else{
