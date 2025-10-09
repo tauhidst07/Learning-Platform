@@ -38,7 +38,7 @@ const ContactUsForm = () => {
         }
         setloading(false);
         }catch(error){
-            (error);
+            console.log(error);
         }
 
     }
